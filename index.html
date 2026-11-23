@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-i18n="pageTitle">العود الذهبي | للعطور الفاخرة</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="nav-container">
+            <nav class="nav-links">
+                <a href="#home" id="homeNavLink" class="active" data-i18n="navHome">الصفحة الرئيسية</a>
+                <a href="#return-policy" id="returnPolicyBtn" data-i18n="navReturn">سياسة الاسترجاع</a>
+                <a href="#contact" data-i18n="navContact">اتصل بنا</a>
+                <a href="#branches" data-i18n="navBranches">فروعنا</a>
+
+                <div class="nav-dropdown-wrapper" id="productsDropdownWrapper">
+                    <button type="button" class="nav-products-trigger" id="productsMenuBtn" aria-expanded="false" aria-haspopup="true">
+                        <span data-i18n="navProducts">المنتجات</span>
+                        <img src="icons/icon8.png" alt="السهم" class="products-arrow-icon">
+                    </button>
+
+                    <ul class="products-dropdown-menu" id="productsDropdownMenu" role="menu">
+                        <li><a href="#products" data-category="offers" data-i18n="prodOffers">الخصومات والعروض</a></li>
+                        <li><a href="#products" data-category="men" data-i18n="prodMen">عطور رجالية</a></li>
+                        <li><a href="#products" data-category="women" data-i18n="prodWomen">عطور نسائية</a></li>
+                        <li><a href="#products" data-category="oriental" data-i18n="prodOriental">عطور شرقية</a></li>
+                        <li><a href="#products" data-category="splash" data-i18n="prodSplash">بادي سبلاش / مخمرية</a></li>
+                    </ul>
+                </div>
+            </nav>
+
+            <div class="nav-brand-group">
+                <a href="#home" id="logoHomeLink" class="logo">
+                    <img src="images/logo1.png" alt="العود الذهبي">
+                </a>
+
+                <div class="cart-badge" dir="ltr">
+                    <img src="icons/icon7.png" alt="Cart" class="cart-icon">
+                    <span class="cart-dot">·</span>
+                    <span class="cart-count" id="cartCount">3</span>
+                    <span class="cart-sep">|</span>
+                    <span class="cart-total"><span id="cartTotal">150</span> EGP</span>
+                </div>
+
+                <button type="button" class="auth-nav-link" id="openAuthBtn">
+                    <span id="authNavLabel" data-i18n="authNavText">SIGN UP / LOGIN</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <div class="policy-modal" id="returnPolicyModal" aria-hidden="true">
+        <div class="policy-modal-box" role="dialog" aria-modal="true" aria-labelledby="policyModalTitle">
+            <div class="policy-modal-header">
+                <h2 id="policyModalTitle" class="policy-modal-title" data-i18n="policyHeading">سياسة الاسترجاع</h2>
+                <button type="button" class="policy-close-btn" id="closePolicyBtn" aria-label="Close">&times;</button>
+            </div>
+
+            <div class="policy-modal-body">
+                <div class="policy-block">
+                    <h3 class="policy-sub-title" data-i18n="policyRule1Title">1 - يمنع استرجاع المنتجات :</h3>
+                    <p class="policy-text" data-i18n="policyRule1Text">لايتم استرجاع المنتجات الا في حالات حفاظاً علي جودتها وحالتها لتقديم افضل جودة للعميل</p>
+                </div>
+
+                <div class="policy-block">
+                    <h3 class="policy-sub-title" data-i18n="policyRule2Title">2 - الحالات المسموح بها الاسترجاع :</h3>
+                    <p class="policy-text" data-i18n="policyRule2Intro">اذا وصل المنتج مكسور او تالف او به عيب او مختلف عن طلبك , مسموح الاسترجاع ونبدله لك بمنتج سليم بشرط :</p>
+                    <ul class="policy-conditions-list">
+                        <li data-i18n="policyCond1">1 - الابلاغ فورا عند استلامه</li>
+                        <li data-i18n="policyCond2">2 - الحفاظ علي المنتج حتا يتم مراجعة طلبك</li>
+                        <li data-i18n="policyCond3">3 - ارسال صورة واضحة للمنتج وسبب تلفه</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="auth-modal" id="authModal" aria-hidden="true">
+        <div class="auth-modal-box" role="dialog" aria-modal="true" aria-labelledby="authModalTitle">
+            <div class="auth-modal-header">
+                <h2 id="authModalTitle" class="auth-modal-title" data-i18n="authNavText">SIGN UP / LOGIN</h2>
+                <button type="button" class="auth-close-btn" id="closeAuthBtn" aria-label="Close">&times;</button>
+            </div>
+
+            <div id="googleOnlyView" class="auth-view">
+                <div id="googleStepInitial" class="auth-step">
+                    <p class="auth-helper-text" data-i18n="googleOnlyDesc">سجل دخولك أو أنشئ حسابك عبر حساب Google فقط، وسيظل محفوظاً على جهازك تلقائياً</p>
+                    <button type="button" class="google-auth-btn" id="googleAuthBtn">
+                        <span data-i18n="continueWithGoogle">تسجيل بواسطة حساب Google</span>
+                    </button>
+                </div>
+
+                <div id="googleStepName" class="auth-step hidden">
+                    <p class="auth-picked-email" id="pickedGoogleEmail"></p>
+                    <label for="customUserNameInput" class="auth-label" data-i18n="chooseNameLabel">اكتب الاسم الذي تريده</label>
+                    <input type="text" id="customUserNameInput" class="auth-input" autocomplete="off">
+                    <button type="button" class="auth-submit-btn" id="saveCustomNameBtn" data-i18n="completeSignupBtn">حفظ الاسم وتثبيت الحساب</button>
+                </div>
+            </div>
+
+            <div id="loggedInView" class="auth-view hidden">
+                <div class="account-card">
+                    <p class="account-welcome" id="loggedUserName"></p>
+                    <p class="account-email" id="loggedUserEmail"></p>
+                    <span class="account-rank" id="loggedUserRank"></span>
+                </div>
+                <button type="button" class="auth-logout-btn" id="logoutBtn" data-i18n="logoutBtnText">تسجيل الخروج</button>
+            </div>
+
+            <p class="auth-status-msg" id="authStatusMsg"></p>
+        </div>
+    </div>
+
+    <div id="homeView" class="home-view">
+        <main id="home" class="hero-section"></main>
+
+        <section id="categories" class="categories-section">
+            <h2 class="categories-title" data-i18n="categoriesTitle">انواع العطور</h2>
+
+            <div class="categories-row">
+                <div class="category-box" data-category="men">
+                    <div class="category-circle">
+                        <img src="images/p1.jpg" alt="عطور رجالية" class="category-img">
+                    </div>
+                    <span class="category-name" data-i18n="catMen">عطور رجالية</span>
+                </div>
+
+                <div class="category-box" data-category="women">
+                    <div class="category-circle">
+                        <img src="images/p2.jpg" alt="عطور نسائية" class="category-img">
+                    </div>
+                    <span class="category-name" data-i18n="catWomen">عطور نسائية</span>
+                </div>
+
+                <div class="category-box" data-category="oriental">
+                    <div class="category-circle">
+                        <img src="images/p3.jpg" alt="عطور شرقية" class="category-img">
+                    </div>
+                    <span class="category-name" data-i18n="catOriental">عطور شرقية</span>
+                </div>
+
+                <div class="category-box" data-category="splash">
+                    <div class="category-circle">
+                        <img src="images/p4.jpg" alt="بادي اسبلاش و مخمريات" class="category-img">
+                    </div>
+                    <span class="category-name" data-i18n="catSplash">بادي اسبلاش و مخمريات</span>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <section id="products" class="products-page hidden">
+        <div class="products-page-container">
+            <div class="products-page-header">
+                <span class="products-page-kicker" data-i18n="productsKicker">العود الذهبي</span>
+                <h1 class="products-page-title" id="productsSectionTitle" data-i18n="prodOffers">الخصومات والعروض</h1>
+                <p class="products-page-subtitle" id="productsSectionDesc" data-i18n="offersSubDesc">المنتجات التي تشمل خصومات وعروض خاصة حالياً فقط</p>
+            </div>
+
+            <div class="products-tabs" role="tablist" id="productsTabs">
+                <button type="button" class="product-tab-btn active" data-category="offers" data-i18n="prodOffers">الخصومات والعروض</button>
+                <button type="button" class="product-tab-btn" data-category="men" data-i18n="prodMen">عطور رجالية</button>
+                <button type="button" class="product-tab-btn" data-category="women" data-i18n="prodWomen">عطور نسائية</button>
+                <button type="button" class="product-tab-btn" data-category="oriental" data-i18n="prodOriental">عطور شرقية</button>
+                <button type="button" class="product-tab-btn" data-category="splash" data-i18n="prodSplash">بادي سبلاش / مخمرية</button>
+            </div>
+
+            <div class="products-stage">
+                <div class="products-empty-box" id="productsEmptyBox">
+                    <div class="empty-ring"></div>
+                    <h2 class="empty-box-title" id="emptyCategoryHeading" data-i18n="emptyHeading">لم يتم إضافة منتجات في هذا القسم بعد</h2>
+                    <p class="empty-box-desc" data-i18n="emptyDesc">التصميم جاهز ومرتبط بالقسم المحدد، وبمجرد تحديد المنتجات ستظهر هنا مباشرة.</p>
+                    <button type="button" class="back-home-btn" id="backToHomeBtn" data-i18n="backHomeBtn">العودة إلى الصفحة الرئيسية</button>
+                </div>
+
+                <div class="products-grid hidden" id="productsGrid"></div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact" class="footer-section">
+        <div class="footer-box">
+            <div class="footer-logo-wrap">
+                <img src="images/logo1.png" alt="العود الذهبي" class="footer-logo">
+            </div>
+
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3 class="footer-heading" data-i18n="importantInfo">معلومات مهمة</h3>
+
+                    <div class="contact-group">
+                        <span class="contact-title" data-i18n="phoneLabel">للتواصل عبر الهاتف :</span>
+                        <a href="tel:01080949600" class="contact-glow-item">
+                            <img src="icons/icon1.png" alt="هاتف" class="contact-icon">
+                            <span dir="ltr" class="contact-text">010 80949600</span>
+                        </a>
+                    </div>
+
+                    <div class="contact-group">
+                        <span class="contact-title" data-i18n="whatsappLabel">للتواصل عبر الواتساب :</span>
+                        <a href="https://wa.me/201080949600" target="_blank" rel="noopener noreferrer" class="contact-glow-item">
+                            <img src="icons/icon2.png" alt="واتساب" class="contact-icon">
+                            <span dir="ltr" class="contact-text">010 80949600</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div id="branches" class="footer-col">
+                    <h3 class="footer-heading" data-i18n="branchesHeading">فروعنا</h3>
+
+                    <ul class="branches-list">
+                        <li class="branch-item">
+                            <span class="branch-circle" aria-hidden="true"></span>
+                            <span class="branch-text" data-i18n="branchBahary">فرع بحري : 22 شارع الحجاري , بجوار مشويات ابو راوية , أمام سوبر ماركت شرابية</span>
+                        </li>
+
+                        <li class="branch-item">
+                            <span class="branch-circle" aria-hidden="true"></span>
+                            <span class="branch-text" data-i18n="branchHadra">فرع الحضرة الجديدة : امام مستشفي الروماني , بجوار عصير ابن الحته</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom-bar">
+                <div class="lang-switcher" id="langSwitcher">
+                    <button type="button" class="lang-trigger" id="langTrigger" aria-expanded="false" aria-haspopup="listbox">
+                        <img src="icons/icon3.png" alt="اللغة" class="lang-icon">
+                        <span class="lang-current" id="langCurrent">العربية</span>
+                        <span class="lang-arrow" aria-hidden="true">▾</span>
+                    </button>
+
+                    <ul class="lang-dropdown" id="langDropdown" role="listbox">
+                        <li>
+                            <button type="button" class="lang-option active" data-lang="ar">العربية</button>
+                        </li>
+                        <li>
+                            <button type="button" class="lang-option" data-lang="en">English</button>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="footer-social-icons" dir="ltr">
+                    <a href="#"><img src="icons/icon4.png" alt="Icon 4" class="social-icon-img"></a>
+                    <a href="#"><img src="icons/icon5.png" alt="Icon 5" class="social-icon-img"></a>
+                    <a href="#"><img src="icons/icon6.png" alt="Icon 6" class="social-icon-img"></a>
+                </div>
+            </div>
+
+            <div class="footer-copyright">
+                <p data-i18n="copyrightText">© جميع الحقوق محفوظة - العود الذهبي 2026</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
