@@ -1,0 +1,357 @@
+/* ===== صفحة إتمام الطلب المستقلة ===== */
+#checkoutPage.hidden,
+.checkout-page.hidden {
+    display: none !important;
+}
+
+.checkout-page {
+    min-height: calc(100vh - 80px);
+    padding: 115px 24px 80px;
+    background: radial-gradient(circle at top, rgba(212, 175, 55, 0.08), transparent 55%), #101010;
+}
+
+.checkout-container {
+    max-width: 1180px;
+    margin: 0 auto;
+}
+
+.checkout-container,
+.checkout-container * {
+    font-family: 'FooterFont2', 'CustomFont', sans-serif;
+}
+
+.checkout-top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 28px;
+    flex-wrap: wrap;
+}
+
+.checkout-title {
+    font-size: 30px;
+    font-weight: normal;
+    color: #fff8de;
+}
+
+.checkout-back-btn {
+    background: transparent;
+    border: 1px solid rgba(243, 210, 122, 0.45);
+    color: #fff3c4;
+    font-size: 15.5px;
+    padding: 9px 16px;
+    border-radius: 0;
+    cursor: pointer;
+    transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.checkout-back-btn:hover {
+    background: rgba(243, 210, 122, 0.14);
+    border-color: #ffe599;
+}
+
+/* في RTL: العنصر الأول في الـ grid يظهر على اليمين والعنصر الثاني على الشمال */
+.checkout-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+    gap: 32px;
+    align-items: start;
+}
+
+/* العمود الأيمن: بيانات العميل والعنوان */
+.checkout-right-card,
+.checkout-left-card {
+    background: linear-gradient(165deg, #211c12 0%, #15120c 60%, #1d180f 100%);
+    border: 1px solid rgba(235, 196, 92, 0.4);
+    border-radius: 0;
+    padding: 24px 22px;
+    box-shadow: 0 18px 42px rgba(0, 0, 0, 0.5);
+}
+
+.checkout-section-heading {
+    font-size: 21px;
+    font-weight: normal;
+    color: #f3d27a;
+    margin-bottom: 18px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(243, 210, 122, 0.25);
+}
+
+.checkout-fields-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.checkout-field-group {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+.checkout-label {
+    font-size: 16px;
+    color: #fff6d6;
+}
+
+.checkout-input,
+.checkout-textarea {
+    width: 100%;
+    padding: 11px 14px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(243, 210, 122, 0.35);
+    border-radius: 0;
+    color: #ffffff;
+    font-size: 15.5px;
+    outline: none;
+    transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+.checkout-input:focus,
+.checkout-textarea:focus {
+    border-color: #ffe599;
+    background: rgba(255, 255, 255, 0.07);
+}
+
+.checkout-textarea {
+    min-height: 92px;
+    resize: vertical;
+}
+
+.checkout-field-hint {
+    font-size: 13.5px;
+    line-height: 1.65;
+    color: rgba(255, 243, 196, 0.72);
+    padding: 8px 12px;
+    background: rgba(255, 255, 255, 0.025);
+    border-inline-start: 2px solid rgba(212, 175, 55, 0.5);
+}
+
+/* العمود الأيسر: المنتجات والمجموع والإجمالي وطرق الدفع */
+.checkout-items-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 18px;
+}
+
+.checkout-empty-cart {
+    padding: 24px 12px;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.75);
+    border: 1px dashed rgba(243, 210, 122, 0.3);
+}
+
+.checkout-order-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    padding: 11px 12px;
+    background: rgba(255, 244, 204, 0.04);
+    border: 1px solid rgba(243, 210, 122, 0.24);
+}
+
+.checkout-order-item-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-width: 0;
+}
+
+.checkout-order-thumb {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    flex-shrink: 0;
+    border: 1px solid rgba(243, 210, 122, 0.3);
+}
+
+.checkout-order-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.checkout-order-name {
+    font-size: 16px;
+    color: #fff8de;
+}
+
+.checkout-order-sub {
+    font-size: 13.5px;
+    color: rgba(255, 243, 196, 0.75);
+    direction: ltr;
+    text-align: start;
+}
+
+.checkout-order-line-total {
+    font-size: 15.5px;
+    color: #ffd978;
+    white-space: nowrap;
+    direction: ltr;
+}
+
+.checkout-summary-box {
+    padding-top: 14px;
+    border-top: 1px solid rgba(243, 210, 122, 0.25);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 22px;
+}
+
+.checkout-summary-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 16px;
+    color: rgba(255, 248, 222, 0.88);
+}
+
+.checkout-summary-row.total-row {
+    padding-top: 10px;
+    border-top: 1px solid rgba(243, 210, 122, 0.28);
+    font-size: 19px;
+    color: #ffd978;
+}
+
+/* اختيارات الدفع */
+.payment-methods-list {
+    display: flex;
+    flex-direction: column;
+    gap: 11px;
+    margin-bottom: 18px;
+}
+
+.payment-option-card {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 14px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(243, 210, 122, 0.32);
+    color: #fff8de;
+    font-size: 15.5px;
+    cursor: pointer;
+    transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.payment-option-card:hover {
+    border-color: rgba(243, 210, 122, 0.65);
+    background: rgba(243, 210, 122, 0.07);
+}
+
+.payment-option-card.active {
+    border-color: #ffe599;
+    background: rgba(243, 210, 122, 0.14);
+}
+
+.payment-option-card input[type="radio"] {
+    accent-color: #e7c162;
+    width: 17px;
+    height: 17px;
+    cursor: pointer;
+}
+
+/* تفاصيل فودافون كاش */
+.vodafone-details-box {
+    padding: 14px;
+    margin-bottom: 18px;
+    background: rgba(255, 244, 204, 0.05);
+    border: 1px solid rgba(243, 210, 122, 0.45);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.vodafone-number-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.vodafone-number-label {
+    font-size: 15.5px;
+    color: #fff6d6;
+}
+
+.vodafone-number-value {
+    font-size: 17px;
+    color: #ffd978;
+    letter-spacing: 0.6px;
+}
+
+.copy-number-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 7px 12px;
+    background: rgba(231, 193, 98, 0.16);
+    border: 1px solid rgba(243, 210, 122, 0.55);
+    color: #fff3c4;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.copy-number-btn:hover {
+    background: rgba(231, 193, 98, 0.28);
+    border-color: #ffe599;
+}
+
+.copy-icon-img {
+    width: 18px;
+    height: 18px;
+    object-fit: contain;
+    display: block;
+}
+
+.vodafone-warning-note {
+    font-size: 14px;
+    line-height: 1.7;
+    color: #ffe599;
+    padding: 9px 12px;
+    background: rgba(0, 0, 0, 0.28);
+    border-inline-start: 2px solid #e7c162;
+}
+
+.checkout-submit-btn {
+    width: 100%;
+    padding: 14px 18px;
+    background: linear-gradient(135deg, #e7c162 0%, #ca9d36 100%);
+    border: 1px solid #fff1be;
+    border-radius: 0;
+    color: #181308;
+    font-size: 17px;
+    cursor: pointer;
+    transition: transform 0.2s ease, filter 0.2s ease;
+}
+
+.checkout-submit-btn:hover {
+    transform: translateY(-1px);
+    filter: brightness(1.06);
+}
+
+.checkout-feedback-msg {
+    margin-top: 12px;
+    font-size: 14.5px;
+    line-height: 1.65;
+    text-align: center;
+    color: #fff3c4;
+    min-height: 20px;
+}
+
+@media (max-width: 860px) {
+    .checkout-page {
+        padding-top: 105px;
+    }
+
+    .checkout-layout {
+        grid-template-columns: 1fr;
+        gap: 22px;
+    }
+}

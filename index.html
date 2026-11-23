@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title data-i18n="pageTitle">العود الذهبي | للعطور الفاخرة</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="checkout.css">
 </head>
 <body>
 
@@ -37,13 +38,13 @@
                     <img src="images/logo1.png" alt="العود الذهبي">
                 </a>
 
-                <div class="cart-badge" dir="ltr">
+                <button type="button" class="cart-badge" id="openCartBtn" dir="ltr" aria-label="Shopping Cart">
                     <img src="icons/icon7.png" alt="Cart" class="cart-icon">
                     <span class="cart-dot">·</span>
-                    <span class="cart-count" id="cartCount">3</span>
+                    <span class="cart-count" id="cartCount">0</span>
                     <span class="cart-sep">|</span>
-                    <span class="cart-total"><span id="cartTotal">150</span> EGP</span>
-                </div>
+                    <span class="cart-total"><span id="cartTotal">0</span> EGY</span>
+                </button>
 
                 <button type="button" class="auth-nav-link" id="openAuthBtn">
                     <span id="authNavLabel" data-i18n="authNavText">SIGN UP / LOGIN</span>
@@ -52,11 +53,32 @@
         </div>
     </header>
 
+    <aside class="cart-drawer-backdrop" id="cartDrawerBackdrop" aria-hidden="true">
+        <div class="cart-drawer" id="cartDrawer" role="dialog" aria-modal="true" aria-labelledby="cartDrawerTitle">
+            <div class="cart-drawer-header">
+                <h2 class="cart-drawer-title" id="cartDrawerTitle" data-i18n="cartDrawerHeading">سلة المشتريات</h2>
+                <button type="button" class="cart-close-btn" id="closeCartBtn" aria-label="Close">×</button>
+            </div>
+
+            <div class="cart-drawer-items" id="cartDrawerItems"></div>
+
+            <div class="cart-drawer-footer">
+                <div class="cart-subtotal-row">
+                    <span class="cart-subtotal-label" data-i18n="cartSubtotalLabel">الإجمالي</span>
+                    <span class="cart-subtotal-value" dir="ltr"><span id="drawerCartTotal">0</span> EGY</span>
+                </div>
+
+                <button type="button" class="cart-checkout-btn" id="checkoutOrderBtn" data-i18n="checkoutBtnText">إتمام الطلب</button>
+                <button type="button" class="cart-continue-btn" id="continueShoppingBtn" data-i18n="continueShoppingText">تكملة التسوق</button>
+            </div>
+        </div>
+    </aside>
+
     <div class="policy-modal" id="returnPolicyModal" aria-hidden="true">
         <div class="policy-modal-box" role="dialog" aria-modal="true" aria-labelledby="policyModalTitle">
             <div class="policy-modal-header">
                 <h2 id="policyModalTitle" class="policy-modal-title" data-i18n="policyHeading">سياسة الاسترجاع</h2>
-                <button type="button" class="policy-close-btn" id="closePolicyBtn" aria-label="Close">&times;</button>
+                <button type="button" class="policy-close-btn" id="closePolicyBtn" aria-label="Close">×</button>
             </div>
 
             <div class="policy-modal-body">
@@ -82,7 +104,7 @@
         <div class="auth-modal-box" role="dialog" aria-modal="true" aria-labelledby="authModalTitle">
             <div class="auth-modal-header">
                 <h2 id="authModalTitle" class="auth-modal-title" data-i18n="authNavText">SIGN UP / LOGIN</h2>
-                <button type="button" class="auth-close-btn" id="closeAuthBtn" aria-label="Close">&times;</button>
+                <button type="button" class="auth-close-btn" id="closeAuthBtn" aria-label="Close">×</button>
             </div>
 
             <div id="googleOnlyView" class="auth-view">
@@ -150,6 +172,54 @@
                 </div>
             </div>
         </section>
+
+        <!-- 1. العطور الرجالية -->
+        <section class="home-banner-section" aria-label="Men Banner">
+            <div class="home-banner-box">
+                <img src="images/background2.png" alt="العطور الرجالية" class="home-banner-img">
+            </div>
+        </section>
+
+        <section id="homeMenShowcase" class="home-men-section">
+            <h2 class="home-men-title" data-i18n="homeMenShowcaseTitle">العطور الرجالية</h2>
+            <div class="home-men-carousel" id="homeMenGrid"></div>
+        </section>
+
+        <!-- 2. العطور النسائية -->
+        <section class="home-banner-section" aria-label="Women Banner">
+            <div class="home-banner-box">
+                <img src="images/background3.png" alt="العطور النسائية" class="home-banner-img">
+            </div>
+        </section>
+
+        <section id="homeWomenShowcase" class="home-men-section">
+            <h2 class="home-men-title" data-i18n="homeWomenShowcaseTitle">العطور النسائية</h2>
+            <div class="home-men-carousel" id="homeWomenGrid"></div>
+        </section>
+
+        <!-- 3. العطور الشرقية -->
+        <section class="home-banner-section" aria-label="Oriental Banner">
+            <div class="home-banner-box">
+                <img src="images/background4.png" alt="العطور الشرقية" class="home-banner-img">
+            </div>
+        </section>
+
+        <section id="homeOrientalShowcase" class="home-men-section">
+            <h2 class="home-men-title" data-i18n="homeOrientalShowcaseTitle">العطور الشرقية</h2>
+            <div class="home-men-carousel" id="homeOrientalGrid"></div>
+        </section>
+
+        <!-- 4. بادي اسبلاش و مخمريات -->
+        <section class="home-banner-section" aria-label="Splash Banner">
+            <div class="home-banner-box">
+                <img src="images/background5.png" alt="بادي اسبلاش و مخمريات" class="home-banner-img">
+            </div>
+        </section>
+
+        <section id="homeSplashShowcase" class="home-men-section">
+            <h2 class="home-men-title" data-i18n="homeSplashShowcaseTitle">بادي اسبلاش و مخمريات</h2>
+            <div class="home-men-carousel" id="homeSplashGrid"></div>
+        </section>
     </div>
 
     <section id="products" class="products-page hidden">
@@ -176,8 +246,141 @@
                     <button type="button" class="back-home-btn" id="backToHomeBtn" data-i18n="backHomeBtn">العودة إلى الصفحة الرئيسية</button>
                 </div>
 
-                <div class="products-grid hidden" id="productsGrid"></div>
+                <div class="products-grid" id="productsGrid"></div>
             </div>
+        </div>
+    </section>
+
+    <section id="productDetailPage" class="product-detail-page hidden">
+        <div class="product-detail-container">
+            <div class="detail-top-bar">
+                <button type="button" id="detailBackToProductsBtn" class="detail-back-link">← العودة إلى المنتجات</button>
+            </div>
+
+            <div class="product-detail-layout">
+                <div class="product-detail-media">
+                    <img src="" alt="" id="detailProductImg" class="product-detail-img">
+                </div>
+
+                <div class="product-detail-info">
+                    <span id="detailProductType" class="detail-product-type"></span>
+                    <h1 id="detailProductName" class="detail-product-name"></h1>
+                    <p id="detailProductPrice" class="detail-product-price"></p>
+                    <div id="detailSizesRow" class="detail-sizes-row"></div>
+                    <p id="detailProductNote" class="detail-product-note"></p>
+
+                    <div class="detail-qty-row" dir="ltr">
+                        <button type="button" id="detailQtyMinusBtn" class="detail-qty-btn" aria-label="Decrease quantity">−</button>
+                        <span id="detailQtyValue" class="detail-qty-value">1</span>
+                        <button type="button" id="detailQtyPlusBtn" class="detail-qty-btn" aria-label="Increase quantity">+</button>
+                    </div>
+
+                    <div class="detail-actions-row">
+                        <button type="button" id="detailAddToCartBtn" class="detail-add-cart-btn">إضافة إلى سلة المشتريات</button>
+                        <button type="button" id="detailContinueBtn" class="detail-continue-btn">تكملة التسوق</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="checkoutPage" class="checkout-page hidden">
+        <div class="checkout-container">
+            <div class="checkout-top-bar">
+                <h1 class="checkout-title">إتمام الطلب</h1>
+                <button type="button" id="checkoutBackBtn" class="checkout-back-btn">← العودة</button>
+            </div>
+
+            <form id="checkoutForm" class="checkout-layout" novalidate>
+                <div class="checkout-right-card">
+                    <h2 class="checkout-section-heading">بيانات التوصيل</h2>
+
+                    <div class="checkout-fields-stack">
+                        <div class="checkout-field-group">
+                            <label for="checkoutNameInput" class="checkout-label">الاسم :</label>
+                            <input type="text" id="checkoutNameInput" class="checkout-input" required>
+                        </div>
+
+                        <div class="checkout-field-group">
+                            <label for="checkoutPhoneInput" class="checkout-label">رقم الهاتف / واتساب :</label>
+                            <input type="tel" id="checkoutPhoneInput" class="checkout-input" dir="ltr" required>
+                        </div>
+
+                        <div class="checkout-field-group">
+                            <label for="checkoutAltPhoneInput" class="checkout-label">رقم اخر : اختياري</label>
+                            <input type="tel" id="checkoutAltPhoneInput" class="checkout-input" dir="ltr">
+                        </div>
+
+                        <div class="checkout-field-group">
+                            <label for="checkoutAddressInput" class="checkout-label">العنوان بالتفصيل :</label>
+                            <input type="text" id="checkoutAddressInput" class="checkout-input" required>
+                        </div>
+
+                        <div class="checkout-field-group">
+                            <label for="checkoutNotesInput" class="checkout-label">ملاحظات الطلب ( اختياري ) :</label>
+                            <textarea id="checkoutNotesInput" class="checkout-textarea"></textarea>
+                            <p class="checkout-field-hint">ملاحظات حول الطلب , ملحوظة خاصة قبل التسليم</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="checkout-left-card">
+                    <h2 class="checkout-section-heading">ملخص الطلب</h2>
+
+                    <div id="checkoutItemsList" class="checkout-items-list"></div>
+
+                    <div class="checkout-summary-box">
+                        <div class="checkout-summary-row">
+                            <span>المجموع</span>
+                            <span id="checkoutSubtotal" dir="ltr">0 EGY</span>
+                        </div>
+                        <div class="checkout-summary-row total-row">
+                            <span>الإجمالي</span>
+                            <span id="checkoutTotal" dir="ltr">0 EGY</span>
+                        </div>
+                    </div>
+
+                    <h2 class="checkout-section-heading">اختيار الدفع</h2>
+
+                    <div class="payment-methods-list">
+                        <label class="payment-option-card active" data-payment="cash">
+                            <input type="radio" name="checkoutPaymentMethod" value="cash" checked>
+                            <span>1 - الدفع كاش عند الاستلام</span>
+                        </label>
+
+                        <label class="payment-option-card" data-payment="vodafone">
+                            <input type="radio" name="checkoutPaymentMethod" value="vodafone">
+                            <span>2 - الدفع بواسطة فودافون كاش</span>
+                        </label>
+
+                        <label class="payment-option-card" data-payment="instapay">
+                            <input type="radio" name="checkoutPaymentMethod" value="instapay">
+                            <span>3 - انستا باي</span>
+                        </label>
+                    </div>
+
+                    <div id="vodafoneCashDetailsBox" class="vodafone-details-box hidden">
+                        <div class="vodafone-number-row">
+                            <div>
+                                <span class="vodafone-number-label">رقم التحويل : </span>
+                                <span id="vodafoneTransferNumberText" class="vodafone-number-value" dir="ltr">01080949600</span>
+                            </div>
+
+                            <button type="button" id="copyVodafoneNumberBtn" class="copy-number-btn">
+                                <img src="icons/icon9.png" alt="نسخ" class="copy-icon-img">
+                                <span id="copyNumberBtnText">نسخ الرقم</span>
+                            </button>
+                        </div>
+
+                        <p class="vodafone-warning-note">
+                            ملحوظة : يجب ضروري عند تحويل المبلغ للرقم اخذ سكرين شوت وارسالة الي واتس 01080949600 لتاكيد عميلة الدفع
+                        </p>
+                    </div>
+
+                    <button type="submit" id="payNowBtn" class="checkout-submit-btn">ادفع الان</button>
+                    <p id="checkoutFeedbackMsg" class="checkout-feedback-msg"></p>
+                </div>
+            </form>
         </div>
     </section>
 
@@ -259,6 +462,8 @@
     <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+    <script src="products-data.js"></script>
     <script src="script.js"></script>
+    <script src="checkout.js"></script>
 </body>
 </html>
