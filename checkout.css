@@ -355,3 +355,87 @@
         gap: 22px;
     }
 }
+
+/* ===== المحافظة / المنطقة / أخطاء الحقول ===== */
+.checkout-select {
+    appearance: none;
+    -webkit-appearance: none;
+    cursor: pointer;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'><path d='M1 1l5 5 5-5' fill='none' stroke='%23f3d27a' stroke-width='1.8'/></svg>");
+    background-repeat: no-repeat;
+    background-position: 14px 50%;
+    padding-inline-end: 38px;
+}
+
+html[dir="ltr"] .checkout-select {
+    background-position: calc(100% - 14px) 50%;
+}
+
+.checkout-select option {
+    background: #1a160d;
+    color: #fff8de;
+}
+
+.checkout-input.invalid,
+.checkout-select.invalid {
+    border-color: #e5675b;
+}
+
+.checkout-field-error {
+    display: none;
+    font-size: 13.5px;
+    line-height: 1.6;
+    color: #ff9d90;
+}
+
+.checkout-field-error.show {
+    display: block;
+}
+
+/* ===== عروض داخل ملخص الطلب ===== */
+.checkout-order-line-total {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 3px;
+}
+
+.checkout-price-line {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.checkout-offer-tag {
+    font-size: 12.5px;
+    color: #181308;
+    background: linear-gradient(135deg, #e7c162 0%, #ca9d36 100%);
+    padding: 1px 8px;
+    white-space: nowrap;
+}
+
+.checkout-order-item.is-offer-row {
+    border-color: rgba(243, 210, 122, 0.5);
+    background: rgba(243, 210, 122, 0.08);
+}
+
+/* ملحوظات الحقول (placeholder) بلون رصاصي خافت */
+.checkout-input::placeholder,
+.checkout-textarea::placeholder {
+    color: rgba(255, 255, 255, 0.32);
+    opacity: 1;
+}
+
+/* اتجاه الصفحة في الإنجليزي */
+html[dir="ltr"] .checkout-container {
+    direction: ltr;
+}
+
+.checkout-shipping-note {
+    font-size: 13.5px;
+    line-height: 1.7;
+    color: #ffe599;
+    padding: 8px 12px;
+    background: rgba(0, 0, 0, 0.28);
+    border-inline-start: 2px solid #e7c162;
+}

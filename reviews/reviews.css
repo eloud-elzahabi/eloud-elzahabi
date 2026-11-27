@@ -1,0 +1,171 @@
+reviews_css_content = """@font-face {
+    font-family: 'ReviewNameAr';
+    src: url('../fonts/font3.ttf') format('truetype');
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'ReviewNameEn';
+    src: url('../fonts/font4.ttf') format('truetype');
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'ReviewDescAr';
+    src: url('../fonts/font2.ttf') format('truetype');
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'ReviewDescEn';
+    src: url('../fonts/font5.ttf') format('truetype');
+    font-display: swap;
+}
+
+.reviews-full-banner-section {
+    width: 100%;
+    max-width: 100%;
+    margin: 24px auto 0;
+    padding: 0 36px;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.reviews-full-banner-box {
+    width: 100%;
+    max-width: 1320px;
+    margin: 0 auto;
+    border-radius: 18px;
+    overflow: hidden;
+    line-height: 0;
+}
+
+.reviews-full-banner-img {
+    width: 100%;
+    height: clamp(260px, 42vw, 460px);
+    display: block;
+    object-fit: cover;
+}
+
+.home-reviews-section {
+    padding-bottom: 48px;
+}
+
+.home-reviews-carousel {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding: 12px 24px 18px;
+    scrollbar-width: thin;
+}
+
+.customer-review-card {
+    flex: 0 0 min(430px, 86vw);
+    scroll-snap-align: start;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(212, 175, 55, 0.28);
+    border-radius: 18px;
+    padding: 22px 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 18px;
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.25);
+}
+
+.customer-review-quote-mark {
+    font-size: 38px;
+    line-height: 1;
+    color: rgba(212, 175, 55, 0.45);
+    font-family: Georgia, serif;
+    user-select: none;
+}
+
+.customer-review-text {
+    margin: 0;
+    font-size: 16px;
+    line-height: 1.75;
+    color: inherit;
+}
+
+.customer-review-text.font-desc-ar {
+    font-family: 'ReviewDescAr', sans-serif;
+}
+
+.customer-review-text.font-desc-en {
+    font-family: 'ReviewDescEn', sans-serif;
+}
+
+.customer-review-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding-top: 8px;
+    border-top: 1px solid rgba(212, 175, 55, 0.16);
+}
+
+.customer-review-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.customer-review-author {
+    font-weight: 700;
+    font-size: 15px;
+}
+
+.customer-review-author.font-name-ar {
+    font-family: 'ReviewNameAr', sans-serif;
+}
+
+.customer-review-author.font-name-en {
+    font-family: 'ReviewNameEn', sans-serif;
+}
+
+.customer-review-stars {
+    color: #d4af37;
+    font-size: 15px;
+    letter-spacing: 2px;
+}
+
+.customer-review-avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: rgba(212, 175, 55, 0.14);
+    border: 1px solid rgba(212, 175, 55, 0.35);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 18px;
+    flex-shrink: 0;
+}
+
+.customer-review-avatar.font-name-ar {
+    font-family: 'ReviewNameAr', sans-serif;
+}
+
+.customer-review-avatar.font-name-en {
+    font-family: 'ReviewNameEn', sans-serif;
+}
+
+@media (max-width: 768px) {
+    .reviews-full-banner-section {
+        padding: 0 16px;
+    }
+
+    .reviews-full-banner-img {
+        height: clamp(210px, 48vw, 320px);
+    }
+}
+"""
+
+with open("reviews.css", "w", encoding="utf-8") as f:
+    f.write(reviews_css_content.strip() + "\n")
+
+print("Updated reviews.css successfully")

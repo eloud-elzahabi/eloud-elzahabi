@@ -1,0 +1,196 @@
+/* ===== تحسينات الموبايل: القائمة العلوية + منع التمدد الأفقي ===== */
+html {
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+}
+
+.nav-hamburger {
+    display: none;
+}
+
+@media (max-width: 820px) {
+    html,
+    body {
+        max-width: 100%;
+        overflow-x: hidden;
+    }
+
+    .navbar {
+        padding: 8px 12px;
+    }
+
+    .nav-container {
+        position: relative;
+        flex-wrap: nowrap;
+        gap: 8px;
+    }
+
+    /* زر القائمة (ثلاث خطوط) */
+    .nav-hamburger {
+        display: inline-flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 5px;
+        flex-shrink: 0;
+        width: 42px;
+        height: 42px;
+        padding: 0;
+        background: rgba(18, 18, 18, 0.78);
+        border: 1px solid rgba(212, 175, 55, 0.45);
+        border-radius: 10px;
+        cursor: pointer;
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    .nav-hamburger span {
+        display: block;
+        width: 20px;
+        height: 2px;
+        background: #e7c162;
+        border-radius: 2px;
+        transition: transform 0.3s ease, opacity 0.2s ease;
+    }
+
+    .nav-container.menu-open .nav-hamburger span:nth-child(1) {
+        transform: translateY(7px) rotate(45deg);
+    }
+
+    .nav-container.menu-open .nav-hamburger span:nth-child(2) {
+        opacity: 0;
+    }
+
+    .nav-container.menu-open .nav-hamburger span:nth-child(3) {
+        transform: translateY(-7px) rotate(-45deg);
+    }
+
+    /* القائمة تفتح كلوحة تحت الشريط */
+    .nav-links {
+        display: none;
+        position: absolute;
+        top: calc(100% + 9px);
+        left: -12px;
+        right: -12px;
+        flex-direction: column;
+        align-items: stretch;
+        flex-wrap: nowrap;
+        gap: 0;
+        padding: 6px 16px 12px;
+        background: rgba(10, 10, 10, 0.98);
+        border-bottom: 1px solid rgba(212, 175, 55, 0.35);
+        box-shadow: 0 18px 30px rgba(0, 0, 0, 0.7);
+        max-height: calc(100vh - 76px);
+        max-height: calc(100dvh - 76px);
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .nav-container.menu-open .nav-links {
+        display: flex;
+    }
+
+    .nav-links > a {
+        display: block;
+        padding: 13px 6px;
+        font-size: 17px;
+        border-bottom: 1px solid rgba(212, 175, 55, 0.14);
+    }
+
+    .nav-dropdown-wrapper {
+        display: block;
+        position: static;
+    }
+
+    .nav-products-trigger {
+        width: 100%;
+        justify-content: space-between;
+        padding: 13px 6px;
+        font-size: 17px;
+    }
+
+    .products-dropdown-menu {
+        position: static;
+        display: none;
+        min-width: 0;
+        margin: 0 0 6px;
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+        backdrop-filter: none;
+        box-shadow: none;
+        background: rgba(255, 244, 204, 0.04);
+    }
+
+    .nav-dropdown-wrapper.open .products-dropdown-menu {
+        display: block;
+        transform: none;
+    }
+
+    /* الشعار والبحث والسلة بحجم موبايل */
+    .nav-brand-group {
+        gap: 8px;
+        min-width: 0;
+    }
+
+    .logo img {
+        height: 34px;
+        max-width: 92px;
+    }
+
+    .nav-cart-search-group {
+        gap: 4px;
+    }
+
+    .cart-badge {
+        gap: 5px;
+        padding: 6px 9px;
+        font-size: 13px;
+        letter-spacing: 0;
+    }
+
+    .cart-icon {
+        width: 20px;
+        height: 20px;
+    }
+
+    .cart-dot {
+        display: none;
+    }
+
+    .search-nav-icon {
+        width: 22px;
+        height: 22px;
+    }
+}
+
+@media (max-width: 360px) {
+    .logo img {
+        height: 30px;
+        max-width: 76px;
+    }
+
+    .cart-badge {
+        padding: 5px 7px;
+        font-size: 12px;
+    }
+}
+
+/* نقاط الشرائح: تلتف على سطرين بدل ما تخرج برة الشاشة */
+@media (max-width: 820px) {
+    .home-carousel-controls {
+        padding: 0 14px;
+        box-sizing: border-box;
+        max-width: 100%;
+    }
+
+    .home-carousel-dots {
+        flex-wrap: wrap;
+        justify-content: center;
+        row-gap: 12px;
+        max-width: 100%;
+    }
+
+    .home-carousel-dot {
+        flex: 0 0 auto;
+    }
+}

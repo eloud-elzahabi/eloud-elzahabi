@@ -4,13 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title data-i18n="pageTitle">العود الذهبي | للعطور الفاخرة</title>
+    <link rel="icon" type="image/png" href="website/logoweb.png">
+    <link rel="shortcut icon" type="image/png" href="website/logoweb.png">
+    <link rel="apple-touch-icon" href="website/logoweb.png">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="checkout.css">
+    <link rel="stylesheet" href="whatsapp-float.css">
+    <link rel="stylesheet" href="mobile.css">
+    <link rel="stylesheet" href="reviews/reviews.css">
 </head>
 <body>
 
     <header class="navbar">
         <div class="nav-container">
+            <button type="button" class="nav-hamburger" id="navHamburgerBtn" aria-label="Menu" aria-expanded="false">
+                <span></span><span></span><span></span>
+            </button>
+
             <nav class="nav-links">
                 <a href="#home" id="homeNavLink" class="active" data-i18n="navHome">الصفحة الرئيسية</a>
                 <a href="#return-policy" id="returnPolicyBtn" data-i18n="navReturn">سياسة الاسترجاع</a>
@@ -28,7 +38,8 @@
                         <li><a href="#products" data-category="men" data-i18n="prodMen">عطور رجالية</a></li>
                         <li><a href="#products" data-category="women" data-i18n="prodWomen">عطور نسائية</a></li>
                         <li><a href="#products" data-category="oriental" data-i18n="prodOriental">عطور شرقية</a></li>
-                        <li><a href="#products" data-category="splash" data-i18n="prodSplash">بادي سبلاش / مخمرية</a></li>
+                        <li><a href="#products" data-category="splash" data-i18n="prodSplash">بادي سبلاش</a></li>
+                        <li><a href="#products" data-category="makhmarat" data-i18n="prodMakhmarat">مخمريات</a></li>
                     </ul>
                 </div>
             </nav>
@@ -38,26 +49,108 @@
                     <img src="images/logo1.png" alt="العود الذهبي">
                 </a>
 
-                <button type="button" class="cart-badge" id="openCartBtn" dir="ltr" aria-label="Shopping Cart">
-                    <img src="icons/icon7.png" alt="Cart" class="cart-icon">
-                    <span class="cart-dot">·</span>
-                    <span class="cart-count" id="cartCount">0</span>
-                    <span class="cart-sep">|</span>
-                    <span class="cart-total"><span id="cartTotal">0</span> EGY</span>
-                </button>
+                <div class="nav-cart-search-group">
+                    <button type="button" class="search-nav-btn" id="openSearchBtn" aria-label="Search Products" title="بحث عن منتج">
+                        <img src="icons/icon10.png" alt="بحث" class="search-nav-icon">
+                    </button>
 
-                <button type="button" class="auth-nav-link" id="openAuthBtn">
-                    <span id="authNavLabel" data-i18n="authNavText">SIGN UP / LOGIN</span>
-                </button>
+                    <button type="button" class="cart-badge" id="openCartBtn" dir="ltr" aria-label="Shopping Cart">
+                        <img src="icons/icon7.png" alt="Cart" class="cart-icon">
+                        <span class="cart-dot">·</span>
+                        <span class="cart-count" id="cartCount">0</span>
+                        <span class="cart-sep">|</span>
+                        <span class="cart-total"><span id="cartTotal">0</span> EGY</span>
+                    </button>
+                </div>
             </div>
         </div>
     </header>
+
+    <div class="search-modal" id="searchModal" aria-hidden="true">
+        <div class="search-modal-box" role="dialog" aria-modal="true" aria-labelledby="searchModalTitle">
+            <div class="search-modal-header">
+                <div class="search-header-title-wrap">
+                    <img src="icons/icon10.png" alt="بحث" class="search-header-icon">
+                    <h2 id="searchModalTitle" class="search-modal-title" data-i18n="searchTitle">البحث عن منتج</h2>
+                </div>
+                <button type="button" class="search-close-btn" id="closeSearchBtn" aria-label="Close">
+                    <img src="icons/icon11.png" alt="إغلاق" class="modal-close-icon">
+                </button>
+            </div>
+
+            <div class="search-input-bar">
+                <input type="search" id="productSearchInput" class="search-main-input" placeholder="ابحث باسم العطر أو المخمرية أو البادي سبلاش..." autocomplete="off">
+                <button type="button" class="search-clear-btn hidden" id="clearSearchBtn" data-i18n="searchClearBtn">مسح</button>
+            </div>
+
+            <div class="search-filters-panel">
+                <div class="search-filter-group">
+                    <span class="search-filter-label" data-i18n="searchCategoryFilterLabel">القسم :</span>
+                    <div class="search-category-pills" id="searchCategoryPills">
+                        <button type="button" class="search-pill-btn active" data-search-cat="all" data-i18n="searchAllCats">الكل</button>
+                        <button type="button" class="search-pill-btn" data-search-cat="men" data-i18n="prodMen">عطور رجالية</button>
+                        <button type="button" class="search-pill-btn" data-search-cat="women" data-i18n="prodWomen">عطور نسائية</button>
+                        <button type="button" class="search-pill-btn" data-search-cat="oriental" data-i18n="prodOriental">عطور شرقية</button>
+                        <button type="button" class="search-pill-btn" data-search-cat="splash" data-i18n="prodSplash">بادي سبلاش</button>
+                        <button type="button" class="search-pill-btn" data-search-cat="makhmarat" data-i18n="prodMakhmarat">مخمريات</button>
+                    </div>
+                </div>
+
+                <div class="search-price-controls">
+                    <div class="search-filter-group">
+                        <label for="searchSortSelect" class="search-filter-label" data-i18n="searchSortLabel">ترتيب السعر :</label>
+                        <select id="searchSortSelect" class="search-select">
+                            <option value="default" data-i18n="searchSortDefault">الافتراضي</option>
+                            <option value="price-asc" data-i18n="searchSortAsc">من الأقل للأعلى سعراً</option>
+                            <option value="price-desc" data-i18n="searchSortDesc">من الأعلى للأقل سعراً</option>
+                        </select>
+                    </div>
+
+                    <div class="search-filter-group search-range-group">
+                        <span class="search-filter-label" data-i18n="searchPriceRangeLabel">نطاق السعر (EGY) :</span>
+                        <div class="search-range-inputs" dir="ltr">
+                            <div class="price-stepper-wrap">
+                                <input type="number" id="searchMinPriceInput" class="search-price-input" placeholder="Min" min="0" step="10">
+                                <div class="price-vertical-btns">
+                                    <button type="button" class="price-mini-btn" data-target="searchMinPriceInput" data-step="10" aria-label="Increase min price">+</button>
+                                    <button type="button" class="price-mini-btn" data-target="searchMinPriceInput" data-step="-10" aria-label="Decrease min price">−</button>
+                                </div>
+                            </div>
+                            <span class="search-range-dash">-</span>
+                            <div class="price-stepper-wrap">
+                                <input type="number" id="searchMaxPriceInput" class="search-price-input" placeholder="Max" min="0" step="10">
+                                <div class="price-vertical-btns">
+                                    <button type="button" class="price-mini-btn" data-target="searchMaxPriceInput" data-step="10" aria-label="Increase max price">+</button>
+                                    <button type="button" class="price-mini-btn" data-target="searchMaxPriceInput" data-step="-10" aria-label="Decrease max price">−</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="search-suggestions-block" id="searchSuggestionsBlock">
+                <span class="search-sub-heading" data-i18n="searchSuggestionsTitle">اقتراحات البحث</span>
+                <div class="search-suggestions-list" id="searchSuggestionsList"></div>
+            </div>
+
+            <div class="search-results-block">
+                <div class="search-results-top">
+                    <span class="search-sub-heading" id="searchResultsHeading" data-i18n="searchResultsTitle">النتائج</span>
+                    <span class="search-results-count" id="searchResultsCount">0</span>
+                </div>
+                <div class="search-results-list" id="searchResultsList"></div>
+            </div>
+        </div>
+    </div>
 
     <aside class="cart-drawer-backdrop" id="cartDrawerBackdrop" aria-hidden="true">
         <div class="cart-drawer" id="cartDrawer" role="dialog" aria-modal="true" aria-labelledby="cartDrawerTitle">
             <div class="cart-drawer-header">
                 <h2 class="cart-drawer-title" id="cartDrawerTitle" data-i18n="cartDrawerHeading">سلة المشتريات</h2>
-                <button type="button" class="cart-close-btn" id="closeCartBtn" aria-label="Close">×</button>
+                <button type="button" class="cart-close-btn" id="closeCartBtn" aria-label="Close">
+                    <img src="icons/icon11.png" alt="إغلاق" class="modal-close-icon">
+                </button>
             </div>
 
             <div class="cart-drawer-items" id="cartDrawerItems"></div>
@@ -78,7 +171,9 @@
         <div class="policy-modal-box" role="dialog" aria-modal="true" aria-labelledby="policyModalTitle">
             <div class="policy-modal-header">
                 <h2 id="policyModalTitle" class="policy-modal-title" data-i18n="policyHeading">سياسة الاسترجاع</h2>
-                <button type="button" class="policy-close-btn" id="closePolicyBtn" aria-label="Close">×</button>
+                <button type="button" class="policy-close-btn" id="closePolicyBtn" aria-label="Close">
+                    <img src="icons/icon11.png" alt="إغلاق" class="modal-close-icon">
+                </button>
             </div>
 
             <div class="policy-modal-body">
@@ -97,42 +192,6 @@
                     </ul>
                 </div>
             </div>
-        </div>
-    </div>
-
-    <div class="auth-modal" id="authModal" aria-hidden="true">
-        <div class="auth-modal-box" role="dialog" aria-modal="true" aria-labelledby="authModalTitle">
-            <div class="auth-modal-header">
-                <h2 id="authModalTitle" class="auth-modal-title" data-i18n="authNavText">SIGN UP / LOGIN</h2>
-                <button type="button" class="auth-close-btn" id="closeAuthBtn" aria-label="Close">×</button>
-            </div>
-
-            <div id="googleOnlyView" class="auth-view">
-                <div id="googleStepInitial" class="auth-step">
-                    <p class="auth-helper-text" data-i18n="googleOnlyDesc">سجل دخولك أو أنشئ حسابك عبر حساب Google فقط، وسيظل محفوظاً على جهازك تلقائياً</p>
-                    <button type="button" class="google-auth-btn" id="googleAuthBtn">
-                        <span data-i18n="continueWithGoogle">تسجيل بواسطة حساب Google</span>
-                    </button>
-                </div>
-
-                <div id="googleStepName" class="auth-step hidden">
-                    <p class="auth-picked-email" id="pickedGoogleEmail"></p>
-                    <label for="customUserNameInput" class="auth-label" data-i18n="chooseNameLabel">اكتب الاسم الذي تريده</label>
-                    <input type="text" id="customUserNameInput" class="auth-input" autocomplete="off">
-                    <button type="button" class="auth-submit-btn" id="saveCustomNameBtn" data-i18n="completeSignupBtn">حفظ الاسم وتثبيت الحساب</button>
-                </div>
-            </div>
-
-            <div id="loggedInView" class="auth-view hidden">
-                <div class="account-card">
-                    <p class="account-welcome" id="loggedUserName"></p>
-                    <p class="account-email" id="loggedUserEmail"></p>
-                    <span class="account-rank" id="loggedUserRank"></span>
-                </div>
-                <button type="button" class="auth-logout-btn" id="logoutBtn" data-i18n="logoutBtnText">تسجيل الخروج</button>
-            </div>
-
-            <p class="auth-status-msg" id="authStatusMsg"></p>
         </div>
     </div>
 
@@ -166,17 +225,34 @@
 
                 <div class="category-box" data-category="splash">
                     <div class="category-circle">
-                        <img src="images/p4.jpg" alt="بادي اسبلاش و مخمريات" class="category-img">
+                        <img src="images/p4.jpg" alt="بادي اسبلاش" class="category-img">
                     </div>
-                    <span class="category-name" data-i18n="catSplash">بادي اسبلاش و مخمريات</span>
+                    <span class="category-name" data-i18n="catSplash">بادي اسبلاش</span>
+                </div>
+
+                <div class="category-box" data-category="makhmarat">
+                    <div class="category-circle">
+                        <img src="images/p5.jpg" alt="مخمريات" class="category-img">
+                    </div>
+                    <span class="category-name" data-i18n="catMakhmarat">مخمريات</span>
                 </div>
             </div>
         </section>
 
-        <!-- 1. العطور الرجالية -->
+        <section class="home-banner-section" aria-label="Offers Banner">
+            <div class="home-banner-box">
+                <img src="images/background6.png" alt="الخصومات والعروض" class="home-banner-img">
+            </div>
+        </section>
+
+        <section id="homeOffersShowcase" class="home-men-section">
+            <h2 class="home-men-title" data-i18n="homeOffersShowcaseTitle">الخصومات والعروض</h2>
+            <div class="home-men-carousel" id="homeOffersGrid"></div>
+        </section>
+
         <section class="home-banner-section" aria-label="Men Banner">
             <div class="home-banner-box">
-                <img src="images/background2.png" alt="العطور الرجالية" class="home-banner-img">
+                <img src="images/background2.png" alt="العطور الرجالية" class="home-banner-img" loading="lazy" decoding="async">
             </div>
         </section>
 
@@ -185,10 +261,9 @@
             <div class="home-men-carousel" id="homeMenGrid"></div>
         </section>
 
-        <!-- 2. العطور النسائية -->
         <section class="home-banner-section" aria-label="Women Banner">
             <div class="home-banner-box">
-                <img src="images/background3.png" alt="العطور النسائية" class="home-banner-img">
+                <img src="images/background3.png" alt="العطور النسائية" class="home-banner-img" loading="lazy" decoding="async">
             </div>
         </section>
 
@@ -197,10 +272,9 @@
             <div class="home-men-carousel" id="homeWomenGrid"></div>
         </section>
 
-        <!-- 3. العطور الشرقية -->
         <section class="home-banner-section" aria-label="Oriental Banner">
             <div class="home-banner-box">
-                <img src="images/background4.png" alt="العطور الشرقية" class="home-banner-img">
+                <img src="images/background4.png" alt="العطور الشرقية" class="home-banner-img" loading="lazy" decoding="async">
             </div>
         </section>
 
@@ -209,16 +283,31 @@
             <div class="home-men-carousel" id="homeOrientalGrid"></div>
         </section>
 
-        <!-- 4. بادي اسبلاش و مخمريات -->
         <section class="home-banner-section" aria-label="Splash Banner">
             <div class="home-banner-box">
-                <img src="images/background5.png" alt="بادي اسبلاش و مخمريات" class="home-banner-img">
+                <img src="images/background5.png" alt="بادي اسبلاش" class="home-banner-img" loading="lazy" decoding="async">
             </div>
         </section>
 
-        <section id="homeSplashShowcase" class="home-men-section">
-            <h2 class="home-men-title" data-i18n="homeSplashShowcaseTitle">بادي اسبلاش و مخمريات</h2>
+        <section id="homeSplashShowcase" class="home-men-section home-splash-section">
+            <h2 class="home-men-title" data-i18n="homeSplashShowcaseTitle">بادي اسبلاش</h2>
             <div class="home-men-carousel" id="homeSplashGrid"></div>
+        </section>
+
+        <section id="homeMakhmaratShowcase" class="home-men-section home-makhmarat-section">
+            <h2 class="home-men-title" data-i18n="homeMakhmaratShowcaseTitle">مخمريات</h2>
+            <div class="home-men-carousel" id="homeMakhmaratGrid"></div>
+        </section>
+
+        <section class="reviews-full-banner-section" aria-label="Customer Reviews Banner">
+            <div class="reviews-full-banner-box">
+                <img src="images/background7.png" alt="آراء العملاء" class="reviews-full-banner-img" loading="lazy" decoding="async">
+            </div>
+        </section>
+
+        <section id="homeReviewsShowcase" class="home-men-section home-reviews-section">
+            <h2 class="home-men-title" data-i18n="homeReviewsShowcaseTitle">آراء العملاء</h2>
+            <div class="home-reviews-carousel" id="homeReviewsGrid"></div>
         </section>
     </div>
 
@@ -235,7 +324,8 @@
                 <button type="button" class="product-tab-btn" data-category="men" data-i18n="prodMen">عطور رجالية</button>
                 <button type="button" class="product-tab-btn" data-category="women" data-i18n="prodWomen">عطور نسائية</button>
                 <button type="button" class="product-tab-btn" data-category="oriental" data-i18n="prodOriental">عطور شرقية</button>
-                <button type="button" class="product-tab-btn" data-category="splash" data-i18n="prodSplash">بادي سبلاش / مخمرية</button>
+                <button type="button" class="product-tab-btn" data-category="splash" data-i18n="prodSplash">بادي سبلاش</button>
+                <button type="button" class="product-tab-btn" data-category="makhmarat" data-i18n="prodMakhmarat">مخمريات</button>
             </div>
 
             <div class="products-stage">
@@ -259,7 +349,12 @@
 
             <div class="product-detail-layout">
                 <div class="product-detail-media">
-                    <img src="" alt="" id="detailProductImg" class="product-detail-img">
+                    <div class="detail-gallery-layout">
+                        <div class="detail-main-img-box">
+                            <img src="" alt="" id="detailProductImg" class="product-detail-img">
+                        </div>
+                        <div class="detail-thumbs-col hidden" id="detailThumbsCol" aria-label="Product images"></div>
+                    </div>
                 </div>
 
                 <div class="product-detail-info">
@@ -284,100 +379,143 @@
         </div>
     </section>
 
+    <section id="offerDetailPage" class="product-detail-page hidden">
+        <div class="product-detail-container">
+            <div class="detail-top-bar">
+                <button type="button" id="offerBackBtn" class="detail-back-link">← العودة إلى العروض</button>
+            </div>
+
+            <div class="product-detail-layout">
+                <div class="product-detail-media offer-detail-media-card">
+                    <img src="icons/offer1.png" alt="عرض خاص" id="offerDetailBadgeImg" class="offer-detail-badge-icon">
+                    <p id="offerDetailVisualText" class="offer-detail-visual-text"></p>
+                </div>
+
+                <div class="product-detail-info">
+                    <span id="offerDetailCategoryTag" class="detail-product-type">الخصومات والعروض</span>
+                    <h1 id="offerDetailTitle" class="detail-product-name"></h1>
+                    <p id="offerDetailFullDesc" class="offer-detail-full-desc"></p>
+
+                    <div class="detail-actions-row">
+                        <button type="button" id="offerGoToShopBtn" class="detail-add-cart-btn">الذهاب للشراء</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section id="checkoutPage" class="checkout-page hidden">
         <div class="checkout-container">
             <div class="checkout-top-bar">
-                <h1 class="checkout-title">إتمام الطلب</h1>
-                <button type="button" id="checkoutBackBtn" class="checkout-back-btn">← العودة</button>
+                <h1 class="checkout-title" data-co="title">إتمام الطلب</h1>
+                <button type="button" id="checkoutBackBtn" class="checkout-back-btn" data-co="back">← العودة</button>
             </div>
 
             <form id="checkoutForm" class="checkout-layout" novalidate>
                 <div class="checkout-right-card">
-                    <h2 class="checkout-section-heading">بيانات التوصيل</h2>
+                    <h2 class="checkout-section-heading" data-co="deliveryHeading">بيانات التوصيل</h2>
 
                     <div class="checkout-fields-stack">
                         <div class="checkout-field-group">
-                            <label for="checkoutNameInput" class="checkout-label">الاسم :</label>
-                            <input type="text" id="checkoutNameInput" class="checkout-input" required>
+                            <label for="checkoutNameInput" class="checkout-label" data-co="lblName">الاسم :</label>
+                            <input type="text" id="checkoutNameInput" class="checkout-input" data-co-ph="phName" placeholder="اسمك ثنائي" required>
                         </div>
 
                         <div class="checkout-field-group">
-                            <label for="checkoutPhoneInput" class="checkout-label">رقم الهاتف / واتساب :</label>
-                            <input type="tel" id="checkoutPhoneInput" class="checkout-input" dir="ltr" required>
+                            <label for="checkoutPhoneInput" class="checkout-label" data-co="lblPhone">رقم الهاتف / واتساب :</label>
+                            <input type="tel" id="checkoutPhoneInput" class="checkout-input" dir="ltr" inputmode="numeric" maxlength="11" placeholder="01XXXXXXXXX" required>
+                            <p class="checkout-field-error" id="checkoutPhoneError"></p>
                         </div>
 
                         <div class="checkout-field-group">
-                            <label for="checkoutAltPhoneInput" class="checkout-label">رقم اخر : اختياري</label>
-                            <input type="tel" id="checkoutAltPhoneInput" class="checkout-input" dir="ltr">
+                            <label for="checkoutAltPhoneInput" class="checkout-label" data-co="lblAlt">رقم اخر : اختياري</label>
+                            <input type="tel" id="checkoutAltPhoneInput" class="checkout-input" dir="ltr" inputmode="numeric" maxlength="11" placeholder="01XXXXXXXXX">
+                            <p class="checkout-field-error" id="checkoutAltPhoneError"></p>
                         </div>
 
                         <div class="checkout-field-group">
-                            <label for="checkoutAddressInput" class="checkout-label">العنوان بالتفصيل :</label>
-                            <input type="text" id="checkoutAddressInput" class="checkout-input" required>
+                            <label for="checkoutGovernorateSelect" class="checkout-label" data-co="lblGov">المحافظة :</label>
+                            <select id="checkoutGovernorateSelect" class="checkout-input checkout-select" required>
+                                <option value="alexandria" selected>الإسكندرية</option>
+                            </select>
                         </div>
 
                         <div class="checkout-field-group">
-                            <label for="checkoutNotesInput" class="checkout-label">ملاحظات الطلب ( اختياري ) :</label>
+                            <label for="checkoutAreaSelect" class="checkout-label" data-co="lblArea">المنطقة :</label>
+                            <select id="checkoutAreaSelect" class="checkout-input checkout-select" required>
+                                <option value="">اختر المنطقة</option>
+                            </select>
+                            <p class="checkout-field-error" id="checkoutAreaError"></p>
+                        </div>
+
+                        <div class="checkout-field-group">
+                            <label for="checkoutAddressInput" class="checkout-label" data-co="lblAddress">العنوان بالتفصيل :</label>
+                            <input type="text" id="checkoutAddressInput" class="checkout-input" data-co-ph="phAddress" placeholder="عنوانك بتفصيل وعلامة مميزة له" required>
+                        </div>
+
+                        <div class="checkout-field-group">
+                            <label for="checkoutNotesInput" class="checkout-label" data-co="lblNotes">ملاحظات الطلب ( اختياري ) :</label>
                             <textarea id="checkoutNotesInput" class="checkout-textarea"></textarea>
-                            <p class="checkout-field-hint">ملاحظات حول الطلب , ملحوظة خاصة قبل التسليم</p>
+                            <p class="checkout-field-hint" data-co="notesHint">ملاحظات حول الطلب , ملحوظة خاصة قبل التسليم</p>
                         </div>
                     </div>
                 </div>
 
                 <div class="checkout-left-card">
-                    <h2 class="checkout-section-heading">ملخص الطلب</h2>
+                    <h2 class="checkout-section-heading" data-co="summaryHeading">ملخص الطلب</h2>
 
                     <div id="checkoutItemsList" class="checkout-items-list"></div>
 
                     <div class="checkout-summary-box">
                         <div class="checkout-summary-row">
-                            <span>المجموع</span>
+                            <span data-co="subtotal">المجموع</span>
                             <span id="checkoutSubtotal" dir="ltr">0 EGY</span>
                         </div>
                         <div class="checkout-summary-row total-row">
-                            <span>الإجمالي</span>
+                            <span data-co="total">الإجمالي</span>
                             <span id="checkoutTotal" dir="ltr">0 EGY</span>
                         </div>
+                        <p class="checkout-shipping-note" data-co="shippingNote">ملحوظة : سعر الاجمالي لايشمل مصاريف الشحن, وتضاف قيمة التوصيل حسب منطقتك وبعدها عن الفروع</p>
                     </div>
 
-                    <h2 class="checkout-section-heading">اختيار الدفع</h2>
+                    <h2 class="checkout-section-heading" data-co="paymentHeading">اختيار الدفع</h2>
 
                     <div class="payment-methods-list">
                         <label class="payment-option-card active" data-payment="cash">
                             <input type="radio" name="checkoutPaymentMethod" value="cash" checked>
-                            <span>1 - الدفع كاش عند الاستلام</span>
+                            <span data-co="payCash">1 - الدفع كاش عند الاستلام</span>
                         </label>
 
                         <label class="payment-option-card" data-payment="vodafone">
                             <input type="radio" name="checkoutPaymentMethod" value="vodafone">
-                            <span>2 - الدفع بواسطة فودافون كاش</span>
+                            <span data-co="payVodafone">2 - الدفع بواسطة فودافون كاش</span>
                         </label>
 
                         <label class="payment-option-card" data-payment="instapay">
                             <input type="radio" name="checkoutPaymentMethod" value="instapay">
-                            <span>3 - انستا باي</span>
+                            <span data-co="payInstapay">3 - انستا باي</span>
                         </label>
                     </div>
 
                     <div id="vodafoneCashDetailsBox" class="vodafone-details-box hidden">
                         <div class="vodafone-number-row">
                             <div>
-                                <span class="vodafone-number-label">رقم التحويل : </span>
+                                <span class="vodafone-number-label" data-co="transferNumber">رقم التحويل : </span>
                                 <span id="vodafoneTransferNumberText" class="vodafone-number-value" dir="ltr">01080949600</span>
                             </div>
 
                             <button type="button" id="copyVodafoneNumberBtn" class="copy-number-btn">
-                                <img src="icons/icon9.png" alt="نسخ" class="copy-icon-img">
-                                <span id="copyNumberBtnText">نسخ الرقم</span>
+                                <img src="icons/icon9.png" alt="Copy" class="copy-icon-img">
+                                <span id="copyNumberBtnText" data-co="copy">نسخ الرقم</span>
                             </button>
                         </div>
 
-                        <p class="vodafone-warning-note">
+                        <p class="vodafone-warning-note" data-co="vodafoneNote">
                             ملحوظة : يجب ضروري عند تحويل المبلغ للرقم اخذ سكرين شوت وارسالة الي واتس 01080949600 لتاكيد عميلة الدفع
                         </p>
                     </div>
 
-                    <button type="submit" id="payNowBtn" class="checkout-submit-btn">ادفع الان</button>
+                    <button type="submit" id="payNowBtn" class="checkout-submit-btn" data-co="payNow">ادفع الان</button>
                     <p id="checkoutFeedbackMsg" class="checkout-feedback-msg"></p>
                 </div>
             </form>
@@ -387,7 +525,7 @@
     <footer id="contact" class="footer-section">
         <div class="footer-box">
             <div class="footer-logo-wrap">
-                <img src="images/logo1.png" alt="العود الذهبي" class="footer-logo">
+                <img src="images/logo1.png" alt="العود الذهبي" class="footer-logo" loading="lazy" decoding="async">
             </div>
 
             <div class="footer-grid">
@@ -397,7 +535,7 @@
                     <div class="contact-group">
                         <span class="contact-title" data-i18n="phoneLabel">للتواصل عبر الهاتف :</span>
                         <a href="tel:01080949600" class="contact-glow-item">
-                            <img src="icons/icon1.png" alt="هاتف" class="contact-icon">
+                            <img src="icons/icon1.png" alt="هاتف" class="contact-icon" loading="lazy" decoding="async">
                             <span dir="ltr" class="contact-text">010 80949600</span>
                         </a>
                     </div>
@@ -405,8 +543,16 @@
                     <div class="contact-group">
                         <span class="contact-title" data-i18n="whatsappLabel">للتواصل عبر الواتساب :</span>
                         <a href="https://wa.me/201080949600" target="_blank" rel="noopener noreferrer" class="contact-glow-item">
-                            <img src="icons/icon2.png" alt="واتساب" class="contact-icon">
+                            <img src="icons/icon2.png" alt="واتساب" class="contact-icon" loading="lazy" decoding="async">
                             <span dir="ltr" class="contact-text">010 80949600</span>
+                        </a>
+                    </div>
+
+                    <div class="contact-group">
+                        <span class="contact-title" data-i18n="facebookLabel">صفحتنا عبر الفيسبوك :</span>
+                        <a href="https://www.facebook.com/profile.php?id=61578090924521" target="_blank" rel="noopener noreferrer" class="contact-glow-item">
+                            <img src="icons/icon12.png" alt="فيسبوك" class="contact-icon" loading="lazy" decoding="async">
+                            <span class="contact-text" data-i18n="facebookBtnText">فيسبوك العود الذهبي</span>
                         </a>
                     </div>
                 </div>
@@ -431,7 +577,7 @@
             <div class="footer-bottom-bar">
                 <div class="lang-switcher" id="langSwitcher">
                     <button type="button" class="lang-trigger" id="langTrigger" aria-expanded="false" aria-haspopup="listbox">
-                        <img src="icons/icon3.png" alt="اللغة" class="lang-icon">
+                        <img src="icons/icon3.png" alt="اللغة" class="lang-icon" loading="lazy" decoding="async">
                         <span class="lang-current" id="langCurrent">العربية</span>
                         <span class="lang-arrow" aria-hidden="true">▾</span>
                     </button>
@@ -447,9 +593,9 @@
                 </div>
 
                 <div class="footer-social-icons" dir="ltr">
-                    <a href="#"><img src="icons/icon4.png" alt="Icon 4" class="social-icon-img"></a>
-                    <a href="#"><img src="icons/icon5.png" alt="Icon 5" class="social-icon-img"></a>
-                    <a href="#"><img src="icons/icon6.png" alt="Icon 6" class="social-icon-img"></a>
+                    <a href="#"><img src="icons/icon4.png" alt="Icon 4" class="social-icon-img" loading="lazy" decoding="async"></a>
+                    <a href="#"><img src="icons/icon5.png" alt="Icon 5" class="social-icon-img" loading="lazy" decoding="async"></a>
+                    <a href="#"><img src="icons/icon6.png" alt="Icon 6" class="social-icon-img" loading="lazy" decoding="async"></a>
                 </div>
             </div>
 
@@ -459,11 +605,19 @@
         </div>
     </footer>
 
-    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+    <a href="https://wa.me/201080949600" target="_blank" rel="noopener noreferrer" id="waFloatBtn" class="wa-float" aria-label="تواصل معنا عبر واتساب">
+        <img src="icons/whatsapp.png" alt="WhatsApp" class="wa-float-icon" decoding="async">
+        <span class="wa-float-shine"></span>
+        <span class="wa-float-label">تواصل معنا على واتساب</span>
+    </a>
+
     <script src="products-data.js"></script>
+    <script src="offers-data.js"></script>
+    <script src="reviews/reviews-data.js"></script>
+    <script src="reviews/reviews.js"></script>
     <script src="script.js"></script>
     <script src="checkout.js"></script>
+    <script src="whatsapp-float.js"></script>
+    <script src="mobile-nav.js"></script>
 </body>
 </html>
